@@ -1,0 +1,44 @@
+---
+# tasks file for ruby
+- name: Install require packages
+  become: yes
+  yum:
+    name:
+    - bzip2
+    - git
+    - gcc
+    - gcc-c++
+    - make
+    - openssl-devel
+    - readline-devel
+- name: create install dir
+  become: yes
+  file:
+    path: "{{ rbenv_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 755
+- name: get source code
+  become: yes
+  git:
+    repo: https://github.com/sstephenson/rbenv.git
+    dest: "{{ rbenv_dir }}"
+- name: profile.d
+  become: yes
+  template:
+    src: rbenv.sh
+    dest: /etc/profile.d/rbenv.sh
+    owner: root
+    group: root
+    mode: 0644
+- name: install ruby-build
+  become: yes
+  git:
+    repo: https://github.com/sstephenson/ruby-build.git
+    dest: /opt/rbenv/plugins/ruby-build
+- name: install ruby
+  become: yes
+  shell: "{{ rbenv_dir }}/bin/rbenv install --skip-existing {{ ruby_version }}"
+  environment: 
+    - RBENV_ROOT: "{{ rbenv_dir }}"
