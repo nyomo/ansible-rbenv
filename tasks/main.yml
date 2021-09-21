@@ -36,7 +36,7 @@
   become: yes
   git:
     repo: https://github.com/sstephenson/ruby-build.git
-    dest: /opt/rbenv/plugins/ruby-build
+    dest: "{{ rbenv_dir }}/plugins/ruby-build"
 - name: install ruby
   become: yes
   shell: "{{ rbenv_dir }}/bin/rbenv install --skip-existing {{ ruby_version }}"
