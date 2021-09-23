@@ -4,4 +4,4 @@
   tasks:
     - name: "Include rbenv"
       include_role:
-        name: "ansible_rbenv"
+        name: nyomo.rbenv
