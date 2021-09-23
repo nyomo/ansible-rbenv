@@ -4,4 +4,4 @@
   tasks:
     - name: "Include rbenv"
       include_role:
-        name: "ansible-rbenv"
+        name: "ansible_rbenv"
