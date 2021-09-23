@@ -18,12 +18,13 @@
     state: directory
     owner: root
     group: root
-    mode: 755
+    mode: 0755
 - name: get source code
   become: yes
   git:
     repo: https://github.com/sstephenson/rbenv.git
     dest: "{{ rbenv_dir }}"
+    version: v1.1.2
 - name: profile.d
   become: yes
   template:
@@ -37,9 +38,10 @@
   git:
     repo: https://github.com/sstephenson/ruby-build.git
     dest: "{{ rbenv_dir }}/plugins/ruby-build"
+    version: v20210825
 - name: install ruby
   become: yes
-  shell: "{{ rbenv_dir }}/bin/rbenv install --skip-existing {{ ruby_version }}"
+  command: "{{ rbenv_dir }}/bin/rbenv install --skip-existing {{ ruby_version }}"
   environment: 
     - RBENV_ROOT: "{{ rbenv_dir }}"
   register: result
