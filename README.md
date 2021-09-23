@@ -1,4 +1,4 @@
-ansible-rbenv
+ansible_rbenv
 =========
 
 システムにrbenvをインストールし、ユーザ全員がここでインストールされたrubyを利用する環境を作ります。
@@ -27,7 +27,7 @@ Example Playbook
 
     - hosts: servers
       roles:
-         - rbenv
+         - ansible_rbenv
 
 License
 -------
