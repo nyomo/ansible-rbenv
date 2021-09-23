@@ -42,3 +42,5 @@
   shell: "{{ rbenv_dir }}/bin/rbenv install --skip-existing {{ ruby_version }}"
   environment: 
     - RBENV_ROOT: "{{ rbenv_dir }}"
+  register: result
+  changed_when: false
